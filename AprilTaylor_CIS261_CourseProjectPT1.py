@@ -1,4 +1,4 @@
-
+#course code pt1
 
 def GetEmpInfo():
     EmpName = input("Enter Employee Name: ")
@@ -42,7 +42,7 @@ if __name__== "__main__":
     TotNp = 0.00
     while True:
         EmpName = GetEmpInfo()
-        if (EmpName.upper() == "End"):
+        if (EmpName.upper() == "END"):
             break
         hours = GetHoursWorked()
         hourrate = GetHourlyRate()
@@ -55,4 +55,4 @@ if __name__== "__main__":
         TotTax += incometax
         TotNp += netpay
         
-    PrintTotals (TotEmp, TotHours, TotGP, TotTax, TotNp)
+    PrintTotals (TotEmp, TotHours, TotGp, TotTax, TotNp)
