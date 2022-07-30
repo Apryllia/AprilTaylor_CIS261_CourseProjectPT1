@@ -1,23 +1,21 @@
-keepGoing = "y"
-while keepGoing.lower()== "y":
 
-    def GetEmpInfo():
-        EmpName = input("Enter Employee Name: ")
-        return EmpName
 
-    def GetHoursWorked():
-        hours = float(input("Enter Hours Worked: "))
-        return hours
+def GetEmpInfo():
+    EmpName = input("Enter Employee Name: ")
+    return EmpName
 
-    def GetHourlyRate():
-        hourrate = float(input("Enter Hourly Rate: "))
-        return hourrate
+def GetHoursWorked():
+    hours = float(input("Enter Hours Worked: "))
+    return hours
 
-    def GetTaxRate():
-        taxrate = float(input("Enter tax rate: "))
-        return taxrate
+def GetHourlyRate():
+    hourrate = float(input("Enter Hourly Rate: "))
+    return hourrate
 
-keepGoing = input("\nThis show is over but you can always do it again. Do you wanna go to a different show? Enter yes or no:")
+def GetTaxRate():
+    taxrate = float(input("Enter tax rate: "))
+    return taxrate
+
 
 def CalcTaxNetPay(hours, hourrate, taxrate):
     grosspay = hours * hourrate
