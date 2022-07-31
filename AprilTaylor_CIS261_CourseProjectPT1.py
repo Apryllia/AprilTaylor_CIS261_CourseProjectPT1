@@ -24,15 +24,15 @@ def CalcTaxNetPay(hours, hourrate, taxrate):
     return grosspay, incometax, netpay
 
 def printinfo(EmpName, hours, hourrate, grosspay, taxrate, incometax, netpay ):
-    print(EmpName, f"{hours:,.2f}", f"{grosspay:,.2f}", f"{taxrate:,.2%}", f"{incometax:,.2f}", f"{netpay:,.2f}")
+    print(EmpName, f"{hours:,.2f}", f"${grosspay:,.2f}", f"{taxrate:,.2%}", f"${incometax:,.2f}", f"${netpay:,.2f}")
 
 def PrintTotals(TotEmp, TotHours, TotGp, TotTax, TotNp):
     print()
     print(f"Total Number of Employees: {TotEmp}")
     print(f"Total Hours Work: {TotHours:,.2f}")
-    print(f"Total Gross Pay: {TotGp:,.2f}")
-    print(f"Total Income Tax: {TotTax:,.2f}")
-    print(f"Total Net Pay: {TotNp:,.2f}")
+    print(f"Total Gross Pay: ${TotGp:,.2f}")
+    print(f"Total Income Tax: ${TotTax:,.2f}")
+    print(f"Total Net Pay: ${TotNp:,.2f}")
 
 if __name__== "__main__":
     TotEmp = 0
