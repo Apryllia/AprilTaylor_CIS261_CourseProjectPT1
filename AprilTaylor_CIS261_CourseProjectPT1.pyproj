@@ -22,7 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AprilTaylor_CIS261_CourseProjectPT1.py" />
-    <Compile Include="module1.py">
+    <Compile Include="AprilTaylor_CIS261_CourseProjectPT2.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
