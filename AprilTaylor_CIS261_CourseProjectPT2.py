@@ -37,7 +37,7 @@ def printinfo(EmpTotalData):
         firstday = EmpData[0]
         lastday = EmpData[1]
         empname = EmpData[2]
-        hour = EmpData[3]
+        hours = EmpData[3]
         hourrate = EmpData[4]
         taxrate = EmpData[5]
         grosspay, incometax, netpay = CalcTaxNetPay(hours, hourrate, taxrate)
