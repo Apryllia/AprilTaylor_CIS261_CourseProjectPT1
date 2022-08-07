@@ -2,7 +2,7 @@
 
 def GetEmpInfo():
     empname = input("Enter Employee Name: ")
-    return EmpName
+    return empname
 
 def GetTimeframe():
     firstday = input("Enter Start Date mm\dd\yyyy: ")
@@ -18,7 +18,7 @@ def GetHourlyRate():
     return hourrate
 
 def GetTaxRate():
-    taxrate = float(input("Enter tax rate: "))
+    taxrate = float(input("Enter Tax Rate: "))
     return taxrate
 
 def CalcTaxNetPay(hours, hourrate, taxrate):
@@ -36,7 +36,7 @@ def printinfo(EmpTotalData):
     TotGp = 0.00
     TotTax = 0.00
     TotNp = 0.00
-    for EmpTotals in EmpTotalDataList:
+    for EmpData in EmpTotalDataList:
         firstday = EmpData[0]
         lastday = EmpData[1]
         empname = EmpData[2]
@@ -50,8 +50,11 @@ def printinfo(EmpTotalData):
         TotGp += grosspay
         TotTax += incometax
         TotNp += netpay
-
-
+        EmpTotals["TotEmp"] = TotEmp
+        EmpTotals["TotHours"] = TotHours
+        EmpTotals["TotGp"] = TotGp
+        EmpTotals["TotTax"] = TotTax
+        EmpTotals["TotNp"] = TotNp
 
 #def PrintTotals(TotEmp, TotHours, TotGp, TotTax, TotNp):
 #    print()
@@ -61,16 +64,23 @@ def printinfo(EmpTotalData):
     #print(f"Total Income Tax: ${TotTax:,.2f}")
     #print(f"Total Net Pay: ${TotNp:,.2f}")
 
+def PrintTotals(EmpTotals):
+    print()
+    print(f'Total Number of Employees: {EmpTotals["TotEmp"]}')
+    print(f'Total Hours Work: {EmpTotals["TotHours"]:,.2f}')
+    print(f'Total Gross Pay: ${EmpTotals["TotGp"]:,.2f}')
+    print(f'Total Income Tax: ${EmpTotals["TotTax"]:,.2f}')
+    print(f'Total Net Pay: ${EmpTotals["TotNp"]:,.2f}')
+
+
 if __name__== "__main__":
     #TotEmp = 0
     #TotHours = 0.00
     #TotGp = 0.00
     #TotTax = 0.00
     #TotNp = 0.00
-
     EmpTotalDataList = []
     EmpTotals = {}
-
     while True:
         empname = GetEmpInfo()
         if (empname.upper() == "END"):
@@ -89,5 +99,5 @@ if __name__== "__main__":
 #        TotTax += incometax
 #        TotNp += netpay
     printinfo(EmpTotalDataList)    
-    PrintTotals(TotEmp, TotHours, TotGp, TotTax, TotNp)
+    PrintTotals(EmpTotals)
 
