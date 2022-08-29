@@ -36,7 +36,7 @@ def printinfo(EmpTotalData):
     for EmpData in EmpTotalDataList:
         firstday = EmpData[0]
         lastday = EmpData[1]
-        empname = Empata[2]
+        empname = EmpData[2]
         hours = EmpData[3]
         hourrate = EmpData[4]
         taxrate = EmpData[5]
