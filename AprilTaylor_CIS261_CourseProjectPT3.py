@@ -36,11 +36,30 @@ def printinfo(EmpTotalData):
     TotGp = 0.00
     TotTax = 0.00
     TotNp = 0.00
-
+    ###
     EmpFile = open("empdatafile.txt","r")
     while True:
         rundate = ("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
-
+        if (rundate.upper() == "ALL"):
+            break
+        try:
+            rundate = datetime.strptime(rundate, "%m/%d/%Y")
+            break
+        except ValueError:
+            print("Incorrect date format. Please re-enter:")
+            print()
+            continue
+        while True:
+            EmpDataFile = EmpFile.readline()
+            if not EmpDataFile:
+                break
+            EmpDataFile = EmpDataFile.replace("n/","")
+            EmpList = EmpDataFile.split("|")
+            startdate = EmpData [0]
+            if (str(rundate).upper() != "ALL"):
+                checkdate = datetime.strptime(startdate, "%m/%d/%Y")
+                if (checkdate < rundate):
+                    continue
 
     for EmpData in EmpTotalDataList:
         firstday = EmpData[0]
