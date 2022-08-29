@@ -60,8 +60,9 @@ def printinfo(EmpTotalData):
                 checkdate = datetime.strptime(startdate, "%m/%d/%Y")
                 if (checkdate < rundate):
                     continue
+        ####
 
-    for EmpData in EmpTotalDataList:
+   #### for EmpData in EmpTotalDataList:
         firstday = EmpData[0]
         lastday = EmpData[1]
         empname = Empata[2]
@@ -90,7 +91,8 @@ def PrintTotals(EmpTotals):
     print(f'Total Net Pay: ${EmpTotals["TotNp"]:,.2f}')
 
 if __name__== "__main__":
-    EmpTotalDataList = []
+    EmpFile = open("empdatafile.txt", "a+")
+    #EmpTotalDataList = []
     EmpTotals = {}
     while True:
         empname = GetEmpInfo()
@@ -100,9 +102,20 @@ if __name__== "__main__":
         hours = GetHoursWorked()
         hourrate = GetHourlyRate()
         taxrate = GetTaxRate()
-        EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
-        EmpTotalDataList.append(EmpData)
+       #EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
+       #EmpTotalDataList.append(EmpData)
+
+        EmpDataFile = startdate + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
+        EmpFile.write(EmpDataFile)
+    EmpFile.close()
+    DetailsPrinted = False
+    printinfo()
+    if (DetailsPrinted):
+        PrintTotals (EmpTotals)
+    else:
+        print("No data to return")
+
+
 
     printinfo(EmpTotalDataList)    
     PrintTotals(EmpTotals)
-
