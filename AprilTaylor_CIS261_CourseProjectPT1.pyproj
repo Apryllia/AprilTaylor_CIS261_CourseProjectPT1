@@ -11,6 +11,11 @@
     <OutputPath>.</OutputPath>
     <Name>AprilTaylor_CIS261_CourseProjectPT1</Name>
     <RootNamespace>AprilTaylor_CIS261_CourseProjectPT1</RootNamespace>
+    <TestFramework>pytest</TestFramework>
+    <UnitTestPattern>test*.py</UnitTestPattern>
+    <UnitTestRootDirectory>.</UnitTestRootDirectory>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +28,9 @@
   <ItemGroup>
     <Compile Include="AprilTaylor_CIS261_CourseProjectPT1.py" />
     <Compile Include="AprilTaylor_CIS261_CourseProjectPT2.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AprilTaylor_CIS261_CourseProjectPT3.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

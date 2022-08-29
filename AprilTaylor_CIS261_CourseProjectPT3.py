@@ -1,4 +1,7 @@
-#course code pt2
+#course code pt3
+
+from datetime import datetime
+
 
 def GetEmpInfo():
     empname = input("Enter Employee Name: ")
@@ -33,6 +36,12 @@ def printinfo(EmpTotalData):
     TotGp = 0.00
     TotTax = 0.00
     TotNp = 0.00
+
+    EmpFile = open("empdatafile.txt","r")
+    while True:
+        rundate = ("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
+
+
     for EmpData in EmpTotalDataList:
         firstday = EmpData[0]
         lastday = EmpData[1]
