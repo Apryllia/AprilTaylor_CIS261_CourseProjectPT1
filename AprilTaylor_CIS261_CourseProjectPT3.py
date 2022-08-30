@@ -30,7 +30,7 @@ def CalcTaxNetPay(hours, hourrate, taxrate):
     netpay = grosspay - incometax
     return grosspay, incometax, netpay
 
-def printinfo():
+def printinfo(DetailsPrinted):
     TotEmp = 0
     TotHours = 0.00
     TotGp = 0.00
@@ -39,7 +39,7 @@ def printinfo():
     
     EmpFile = open("empdatafile.txt","r")
     while True:
-        rundate = ("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
+        rundate = input("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
         if (rundate.upper() == "ALL"):
             break
         try:
@@ -81,6 +81,11 @@ def printinfo():
         EmpTotals["TotGp"] = TotGp
         EmpTotals["TotTax"] = TotTax
         EmpTotals["TotNp"] = TotNp
+        DetailsPrinted = True
+    if (DetailsPrinted):
+        PrintTotals (EmpTotals)
+    else:
+        print("No data to return...")
 
 def PrintTotals(EmpTotals):
     print()
@@ -103,6 +108,7 @@ if __name__== "__main__":
         hours = GetHoursWorked()
         hourrate = GetHourlyRate()
         taxrate = GetTaxRate()
+       
        #EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
        #EmpTotalDataList.append(EmpData)
 
@@ -110,12 +116,8 @@ if __name__== "__main__":
         EmpFile.write(EmpDataFile)
     EmpFile.close()
     printinfo(DetailsPrinted)
-    if (DetailsPrinted):
-        PrintTotals (EmpTotals)
-    else:
-        print("No data to return...")
+    
 
 
 
-    printinfo(EmpTotalDataList)    
     
