@@ -2,7 +2,6 @@
 
 from datetime import datetime
 
-
 def GetEmpInfo():
     empname = input("Enter Employee Name: ")
     return empname
@@ -39,36 +38,35 @@ def printinfo(DetailsPrinted):
     
     EmpFile = open("empdatafile.txt","r")
     while True:
-        rundate = input("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
+        rundate = input ("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
         if (rundate.upper() == "ALL"):
             break
         try:
-            rundate = datetime.strptime(rundate, "%m/%d/%Y")
+            rundate = datetime.strptime(rundate, "%m/%d/%y")
             break
         except ValueError:
             print("Incorrect date format. Please re-enter:")
             print()
             continue
-        while True:
-            EmpDataFile = EmpFile.readline()
-            if not EmpDataFile:
-                break
-            EmpDataFile = EmpDataFile.replace("\n","")
-            EmpList = EmpDataFile.split("|")
-            firstday = EmpData[0]
-            if (str(rundate).upper() != "ALL"):
-                checkdate = datetime.strptime(startdate, "%m/%d/%Y")
-                if (checkdate < rundate):
-                    continue
+    while True:
+        EmpDataFile = EmpFile.readline()
+        if not EmpDataFile:
+            break
+        EmpDataFile = EmpDataFile.replace("\n","")
+        EmpData = EmpDataFile.split("|")
+        firstday = EmpData[0]
+        if (str(rundate).upper() != "ALL"):
+            checkdate = datetime.strptime(firstday, "%m/%d/%y")
+            if (checkdate < rundate):
+                continue
        
-
-   #### for EmpData in EmpTotalDataList:
+        #for EmpData in EmpTotalDataList:
         #firstday = EmpData[0]
         lastday = EmpData[1]
         empname = EmpData[2]
-        hours = EmpData[3]
-        hourrate = EmpData[4]
-        taxrate = EmpData[5]
+        hours = float(EmpData[3])
+        hourrate = float(EmpData[4])
+        taxrate = float(EmpData[5])
         grosspay, incometax, netpay = CalcTaxNetPay(hours, hourrate, taxrate)
         print(firstday,lastday, empname, f"{hours:,.2f}", f"${hourrate:,.2f}", f"${grosspay:,.2f}", f"{taxrate:,.1%}", f"${incometax:,.2f}", f"${netpay:,.2f}")
         TotEmp += 1
@@ -85,7 +83,7 @@ def printinfo(DetailsPrinted):
     if (DetailsPrinted):
         PrintTotals (EmpTotals)
     else:
-        print("No data to return...")
+        print("No data on file to return.")
 
 def PrintTotals(EmpTotals):
     print()
@@ -97,7 +95,9 @@ def PrintTotals(EmpTotals):
 
 if __name__== "__main__":
     EmpFile = open("empdatafile.txt", "a+")
+
     #EmpTotalDataList = []
+
     EmpTotals = {}
     DetailsPrinted = False
     while True:
@@ -109,11 +109,12 @@ if __name__== "__main__":
         hourrate = GetHourlyRate()
         taxrate = GetTaxRate()
        
-       #EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
+        EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
        #EmpTotalDataList.append(EmpData)
 
         EmpDataFile = firstday + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
         EmpFile.write(EmpDataFile)
+
     EmpFile.close()
     printinfo(DetailsPrinted)
     
