@@ -30,13 +30,13 @@ def CalcTaxNetPay(hours, hourrate, taxrate):
     netpay = grosspay - incometax
     return grosspay, incometax, netpay
 
-def printinfo(EmpTotalData):
+def printinfo():
     TotEmp = 0
     TotHours = 0.00
     TotGp = 0.00
     TotTax = 0.00
     TotNp = 0.00
-    ###
+    
     EmpFile = open("empdatafile.txt","r")
     while True:
         rundate = ("Enter a start date for the report (MM/DD/YYYY) or ALL for complete data in file: ")
@@ -53,17 +53,17 @@ def printinfo(EmpTotalData):
             EmpDataFile = EmpFile.readline()
             if not EmpDataFile:
                 break
-            EmpDataFile = EmpDataFile.replace("n/","")
+            EmpDataFile = EmpDataFile.replace("\n","")
             EmpList = EmpDataFile.split("|")
-            startdate = EmpData [0]
+            firstday = EmpData[0]
             if (str(rundate).upper() != "ALL"):
                 checkdate = datetime.strptime(startdate, "%m/%d/%Y")
                 if (checkdate < rundate):
                     continue
-        ####
+       
 
    #### for EmpData in EmpTotalDataList:
-        firstday = EmpData[0]
+        #firstday = EmpData[0]
         lastday = EmpData[1]
         empname = EmpData[2]
         hours = EmpData[3]
@@ -94,6 +94,7 @@ if __name__== "__main__":
     EmpFile = open("empdatafile.txt", "a+")
     #EmpTotalDataList = []
     EmpTotals = {}
+    DetailsPrinted = False
     while True:
         empname = GetEmpInfo()
         if (empname.upper() == "END"):
@@ -105,15 +106,14 @@ if __name__== "__main__":
        #EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
        #EmpTotalDataList.append(EmpData)
 
-        EmpDataFile = startdate + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
+        EmpDataFile = firstday + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
         EmpFile.write(EmpDataFile)
     EmpFile.close()
-    DetailsPrinted = False
-    printinfo()
+    printinfo(DetailsPrinted)
     if (DetailsPrinted):
         PrintTotals (EmpTotals)
     else:
-        print("No data to return")
+        print("No data to return...")
 
 
 
