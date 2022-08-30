@@ -52,10 +52,11 @@ def printinfo(DetailsPrinted):
         EmpDataFile = EmpFile.readline()
         if not EmpDataFile:
             break
-        EmpDataFile = EmpDataFile.replace("\n","")
+        EmpDataFile = EmpDataFile.replace("\n", "")
         EmpData = EmpDataFile.split("|")
         firstday = EmpData[0]
         if (str(rundate).upper() != "ALL"):
+
             checkdate = datetime.strptime(firstday, "%m/%d/%y")
             if (checkdate < rundate):
                 continue
@@ -109,10 +110,10 @@ if __name__== "__main__":
         hourrate = GetHourlyRate()
         taxrate = GetTaxRate()
        
-        EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
+       #EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
        #EmpTotalDataList.append(EmpData)
 
-        EmpDataFile = firstday + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
+        EmpDataFile = firstday + "|" + lastday + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
         EmpFile.write(EmpDataFile)
 
     EmpFile.close()
