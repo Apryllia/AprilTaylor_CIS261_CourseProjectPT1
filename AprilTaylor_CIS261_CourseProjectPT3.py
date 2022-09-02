@@ -42,7 +42,7 @@ def printinfo(DetailsPrinted):
         if (rundate.upper() == "ALL"):
             break
         try:
-            rundate = datetime.strptime(rundate, "%m/%d/%y")
+            rundate = datetime.strptime(rundate, "%m/%d/%Y")
             break
         except ValueError:
             print("Incorrect date format. Please re-enter:")
@@ -56,13 +56,10 @@ def printinfo(DetailsPrinted):
         EmpData = EmpDataFile.split("|")
         firstday = EmpData[0]
         if (str(rundate).upper() != "ALL"):
-
-            checkdate = datetime.strptime(firstday, "%m/%d/%y")
+            checkdate = datetime.strptime(firstday, "%m/%d/%Y")
             if (checkdate < rundate):
                 continue
        
-        #for EmpData in EmpTotalDataList:
-        #firstday = EmpData[0]
         lastday = EmpData[1]
         empname = EmpData[2]
         hours = float(EmpData[3])
@@ -96,9 +93,6 @@ def PrintTotals(EmpTotals):
 
 if __name__== "__main__":
     EmpFile = open("empdatafile.txt", "a+")
-
-    #EmpTotalDataList = []
-
     EmpTotals = {}
     DetailsPrinted = False
     while True:
@@ -109,10 +103,6 @@ if __name__== "__main__":
         hours = GetHoursWorked()
         hourrate = GetHourlyRate()
         taxrate = GetTaxRate()
-       
-       #EmpData = [firstday, lastday, empname, hours, hourrate, taxrate]
-       #EmpTotalDataList.append(EmpData)
-
         EmpDataFile = firstday + "|" + lastday + "|" + empname + "|" + str(hours) + "|" + str(hourrate) + "|" +str(taxrate) + "\n"
         EmpFile.write(EmpDataFile)
 
